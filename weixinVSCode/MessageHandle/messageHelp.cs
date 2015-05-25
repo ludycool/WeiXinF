@@ -12,6 +12,8 @@ namespace MessageHandle
     /// </summary>
     public class messageHelp
     {
+
+ 
         //返回消息
         public string ReturnMessage(string postStr)
         {
@@ -106,9 +108,9 @@ namespace MessageHandle
         //写入日志
         public void WriteLog(string text)
         {
-            StreamWriter sw = new StreamWriter(HttpContext.Current.Server.MapPath(".") + "\\log.txt", true);
-            sw.WriteLine(text);
-            sw.Close();//写入
+            //StreamWriter sw = new StreamWriter(HttpContext.Current.Server.MapPath(".") + "\\log.txt", true);
+            //sw.WriteLine(text);
+            //sw.Close();//写入
         }
     }
 
