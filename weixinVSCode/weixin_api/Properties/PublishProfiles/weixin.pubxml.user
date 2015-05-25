@@ -10,8 +10,11 @@
     <TimeStampOfAssociatedLegacyPublishXmlFile />
   </PropertyGroup>
   <ItemGroup>
+    <File Include="bin/MessageHandle.dll">
+      <publishTime>05/25/2015 16:37:23</publishTime>
+    </File>
     <File Include="bin/weixin_api.dll">
-      <publishTime>05/25/2015 15:52:37</publishTime>
+      <publishTime>05/25/2015 16:37:23</publishTime>
     </File>
     <File Include="createMenu.aspx">
       <publishTime>03/26/2014 13:52:49</publishTime>
@@ -35,7 +38,7 @@
       <publishTime>03/26/2014 13:53:16</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>05/25/2015 15:52:37</publishTime>
+      <publishTime>05/25/2015 16:37:23</publishTime>
     </File>
     <File Include="wxapi.ashx">
       <publishTime>05/25/2015 11:56:35</publishTime>
