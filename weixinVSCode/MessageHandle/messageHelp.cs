@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Web;
 using System.IO;
 using System.Text;
-using System.Web.Security;
 using System.Xml;
 
-namespace weixin_api
+namespace MessageHandle
 {
     /// <summary>
     /// 接受/发送消息帮助类

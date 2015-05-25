@@ -86,6 +86,20 @@ namespace weixin_api
             }
         }
 
+
+
+        /// <summary>
+        /// 处理各种请求信息并应答（通过POST的请求）
+        /// </summary>
+        /// <param name="postStr">POST方式提交的数据</param>
+        private void Execute(string postStr)
+        {
+            WeixinApiDispatch dispatch = new WeixinApiDispatch();
+            string responseContent = dispatch.Execute(postStr);
+
+            HttpContext.Current.Response.ContentEncoding = Encoding.UTF8;
+            HttpContext.Current.Response.Write(responseContent);
+        }
         public bool IsReusable
         {
             get
