@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MessageHandle;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
@@ -30,7 +31,7 @@ namespace weixin_api
 
                 if (!string.IsNullOrEmpty(postString))
                 {
-                  //  Execute(postString);
+                    //  Execute(postString);
                 }
             }
             else
@@ -46,7 +47,7 @@ namespace weixin_api
             string token = ConfigurationManager.AppSettings["WeixinToken"];//从配置文件获取Token
             if (string.IsNullOrEmpty(token))
             {
-              //  LogTextHelper.Error(string.Format("WeixinToken 配置项没有配置！"));
+                //  LogTextHelper.Error(string.Format("WeixinToken 配置项没有配置！"));
             }
 
             string echoString = HttpContext.Current.Request.QueryString["echoStr"];
@@ -54,7 +55,7 @@ namespace weixin_api
             string timestamp = HttpContext.Current.Request.QueryString["timestamp"];
             string nonce = HttpContext.Current.Request.QueryString["nonce"];
 
-            if ( CheckSignature(token, signature, timestamp, nonce))
+            if (CheckSignature(token, signature, timestamp, nonce))
             {
                 if (!string.IsNullOrEmpty(echoString))
                 {
@@ -94,9 +95,8 @@ namespace weixin_api
         /// <param name="postStr">POST方式提交的数据</param>
         private void Execute(string postStr)
         {
-            WeixinApiDispatch dispatch = new WeixinApiDispatch();
-            string responseContent = dispatch.Execute(postStr);
-
+            messageHelp mh = new messageHelp();
+            string responseContent = mh.ReturnMessage(postStr);
             HttpContext.Current.Response.ContentEncoding = Encoding.UTF8;
             HttpContext.Current.Response.Write(responseContent);
         }
