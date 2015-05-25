@@ -18,7 +18,7 @@ namespace weixin_api
 
         public void ProcessRequest(HttpContext context)
         {
-            //  context.Response.ContentType = "text/plain";
+             context.Response.ContentType = "text/plain";
             string postString = string.Empty;
             if (HttpContext.Current.Request.HttpMethod.ToUpper() == "POST")
             {
@@ -31,7 +31,8 @@ namespace weixin_api
 
                 if (!string.IsNullOrEmpty(postString))
                 {
-                    //  Execute(postString);
+                  
+                      Execute(postString);
                 }
             }
             else

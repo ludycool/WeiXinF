@@ -12,15 +12,15 @@ namespace MessageHandle
     /// </summary>
     public class messageHelp
     {
-
- 
         //返回消息
         public string ReturnMessage(string postStr)
         {
+           
             string responseContent = "";
             XmlDocument xmldoc = new XmlDocument();
-            xmldoc.Load(new System.IO.MemoryStream(System.Text.Encoding.GetEncoding("GB2312").GetBytes(postStr)));
+            xmldoc.Load(new System.IO.MemoryStream(System.Text.Encoding.GetEncoding("UTF-8").GetBytes(postStr)));
             XmlNode MsgType = xmldoc.SelectSingleNode("/xml/MsgType");
+      
             if (MsgType!=null)
             {
                 switch (MsgType.InnerText)
@@ -94,6 +94,7 @@ namespace MessageHandle
             XmlNode ToUserName = xmldoc.SelectSingleNode("/xml/ToUserName");
             XmlNode FromUserName = xmldoc.SelectSingleNode("/xml/FromUserName");
             XmlNode Content = xmldoc.SelectSingleNode("/xml/Content");
+  
             if (Content != null)
             {
                 responseContent = string.Format(ReplyType.Message_Text, 
@@ -102,15 +103,16 @@ namespace MessageHandle
                     DateTime.Now.Ticks, 
                     "欢迎使用微信公共账号，您输入的内容为：" + Content.InnerText+"\r\n<a href=\"http://www.baidu.com\">点击进入</a>");
             }
+           
             return responseContent;
         }
 
         //写入日志
         public void WriteLog(string text)
         {
-            //StreamWriter sw = new StreamWriter(HttpContext.Current.Server.MapPath(".") + "\\log.txt", true);
-            //sw.WriteLine(text);
-            //sw.Close();//写入
+            StreamWriter sw = new StreamWriter(HttpContext.Current.Server.MapPath(".") + "\\log.txt", true);
+            sw.WriteLine(text);
+            sw.Close();//写入
         }
     }
 

@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="createMenu.aspx" />
+    <Content Include="log.txt" />
     <Content Include="menu.txt" />
     <Content Include="selectMenu.aspx" />
     <Content Include="Web.config">

@@ -11,16 +11,19 @@
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/MessageHandle.dll">
-      <publishTime>05/25/2015 16:37:23</publishTime>
+      <publishTime>05/25/2015 17:09:07</publishTime>
     </File>
     <File Include="bin/weixin_api.dll">
-      <publishTime>05/25/2015 16:37:23</publishTime>
+      <publishTime>05/25/2015 17:09:07</publishTime>
     </File>
     <File Include="createMenu.aspx">
       <publishTime>03/26/2014 13:52:49</publishTime>
     </File>
     <File Include="interfaceTest.ashx">
       <publishTime>03/26/2014 13:53:46</publishTime>
+    </File>
+    <File Include="log.txt">
+      <publishTime>05/25/2015 16:43:57</publishTime>
     </File>
     <File Include="menu.txt">
       <publishTime>03/26/2014 16:02:51</publishTime>
@@ -38,7 +41,7 @@
       <publishTime>03/26/2014 13:53:16</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>05/25/2015 16:37:23</publishTime>
+      <publishTime>05/25/2015 17:09:07</publishTime>
     </File>
     <File Include="wxapi.ashx">
       <publishTime>05/25/2015 11:56:35</publishTime>
