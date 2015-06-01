@@ -74,6 +74,7 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
+    <Content Include="接收参数格式.txt" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="createMenu.aspx.cs">

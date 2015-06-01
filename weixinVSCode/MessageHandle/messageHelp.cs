@@ -12,24 +12,53 @@ namespace MessageHandle
     /// </summary>
     public class messageHelp
     {
+
+        string ServerId; //消息接收方微信号，一般为公众平台账号微信号
+        string ClientId;//消息发送方微信号
+        string MsgId;//接收的消息Id
+        string MsgType;//消息类型
+        string CreateTime;//消息创建时间
+
+
         //返回消息
         public string ReturnMessage(string postStr)
         {
-           
+
             string responseContent = "";
             XmlDocument xmldoc = new XmlDocument();
             xmldoc.Load(new System.IO.MemoryStream(System.Text.Encoding.GetEncoding("UTF-8").GetBytes(postStr)));
-            XmlNode MsgType = xmldoc.SelectSingleNode("/xml/MsgType");
-      
-            if (MsgType!=null)
+            XmlNode xmlMsgType = xmldoc.SelectSingleNode("/xml/MsgType");
+            XmlNode ToUserName = xmldoc.SelectSingleNode("/xml/ToUserName");
+            XmlNode FromUserName = xmldoc.SelectSingleNode("/xml/FromUserName");
+            ServerId = ToUserName.InnerText;
+            ClientId = FromUserName.InnerText;
+            MsgType = xmlMsgType.InnerText;
+
+            if (MsgType != null)
             {
-                switch (MsgType.InnerText)
+                switch (MsgType)
                 {
-                    case "event":
-                        responseContent=EventHandle(xmldoc);//事件处理
+                    case "event"://事件处理
+                        responseContent = EventHandle(xmldoc);
                         break;
-                    case "text":
-                        responseContent=TextHandle(xmldoc);//接受文本消息处理
+                    case "text"://接受文本消息处理
+                        responseContent = TextHandle(xmldoc);
+                        break;
+
+
+                    case "image"://图像
+
+                        break;
+
+                    case "voice"://语音
+
+                        break;
+
+                    case "video"://视频
+
+                        break;
+                    case "location"://位置
+
                         break;
                     default:
                         break;
@@ -45,45 +74,63 @@ namespace MessageHandle
             XmlNode EventKey = xmldoc.SelectSingleNode("/xml/EventKey");
             XmlNode ToUserName = xmldoc.SelectSingleNode("/xml/ToUserName");
             XmlNode FromUserName = xmldoc.SelectSingleNode("/xml/FromUserName");
-            if (Event!=null)
+            if (Event != null)
             {
-                //菜单单击事件
-                if (Event.InnerText.Equals("CLICK"))
+                switch (Event.InnerText)
                 {
-                    if (EventKey.InnerText.Equals("click_one"))//click_one
-                    {
-                        responseContent = string.Format(ReplyType.Message_Text,
-                            FromUserName.InnerText,
-                            ToUserName.InnerText, 
-                            DateTime.Now.Ticks, 
-                            "你点击的是click_one");
-                    }
-                    else if (EventKey.InnerText.Equals("click_two"))//click_two
-                    {
-                        responseContent = string.Format(ReplyType.Message_News_Main, 
-                            FromUserName.InnerText, 
-                            ToUserName.InnerText, 
-                            DateTime.Now.Ticks, 
-                            "2",
-                             string.Format(ReplyType.Message_News_Item,"我要寄件","",
-                             "http://www.soso.com/orderPlace.jpg",
-                             "http://www.soso.com/")+
-                             string.Format(ReplyType.Message_News_Item, "订单管理", "",
-                             "http://www.soso.com/orderManage.jpg",
-                             "http://www.soso.com/"));
-                    }
-                    else if (EventKey.InnerText.Equals("click_three"))//click_three
-                    {
-                        responseContent = string.Format(ReplyType.Message_News_Main,
-                            FromUserName.InnerText,
-                            ToUserName.InnerText,
-                            DateTime.Now.Ticks,
-                            "1",
-                             string.Format(ReplyType.Message_News_Item, "标题", "摘要",
-                             "http://www.soso.com/jieshao.jpg",
-                             "http://www.soso.com/"));
-                    }
+                    case "CLICK"://点击
+                        #region
+
+
+                        switch (EventKey.InnerText)
+                        {
+                            case "click_one":
+                                responseContent = string.Format(ReplyType.Message_Text,
+                           FromUserName.InnerText,
+                           ToUserName.InnerText,
+                           DateTime.Now.Ticks,
+                           "你点击的是click_one");
+
+                                break;
+                            case "click_two":
+                                responseContent = string.Format(ReplyType.Message_News_Main,
+                           FromUserName.InnerText,
+                           ToUserName.InnerText,
+                           DateTime.Now.Ticks,
+                           "2",
+                            string.Format(ReplyType.Message_News_Item, "我要寄件", "",
+                            "http://www.soso.com/orderPlace.jpg",
+                            "http://www.soso.com/") +
+                            string.Format(ReplyType.Message_News_Item, "订单管理", "",
+                            "http://www.soso.com/orderManage.jpg",
+                            "http://www.soso.com/"));
+
+                                break;
+                            case "click_three":
+                                responseContent = string.Format(ReplyType.Message_News_Main,
+                           FromUserName.InnerText,
+                           ToUserName.InnerText,
+                           DateTime.Now.Ticks,
+                           "1",
+                            string.Format(ReplyType.Message_News_Item, "标题", "摘要",
+                            "http://www.soso.com/jieshao.jpg",
+                            "http://www.soso.com/"));
+
+                                break;
+                        }
+
+                        #endregion
+                        break;
+                    case "subscribe"://关注
+
+                        break;
+                    case "unsubscribe"://取消关注
+
+
+                        break;
+
                 }
+
             }
             return responseContent;
         }
@@ -94,26 +141,28 @@ namespace MessageHandle
             XmlNode ToUserName = xmldoc.SelectSingleNode("/xml/ToUserName");
             XmlNode FromUserName = xmldoc.SelectSingleNode("/xml/FromUserName");
             XmlNode Content = xmldoc.SelectSingleNode("/xml/Content");
-  
+
             if (Content != null)
             {
-                responseContent = string.Format(ReplyType.Message_Text, 
-                    FromUserName.InnerText, 
-                    ToUserName.InnerText, 
-                    DateTime.Now.Ticks, 
-                    "欢迎使用微信公共账号，您输入的内容为：" + Content.InnerText+"\r\n<a href=\"http://www.baidu.com\">点击进入</a>");
+                responseContent = string.Format(ReplyType.Message_Text,
+                    FromUserName.InnerText,
+                    ToUserName.InnerText,
+                    DateTime.Now.Ticks,
+                    "欢迎使用微信公共账号，您输入的内容为：" + Content.InnerText + "\r\n<a href=\"http://www.baidu.com\">点击进入</a>");
             }
-           
+
             return responseContent;
         }
 
-        //写入日志
+        //写入日志 
         public void WriteLog(string text)
         {
             StreamWriter sw = new StreamWriter(HttpContext.Current.Server.MapPath(".") + "\\log.txt", true);
             sw.WriteLine(text);
             sw.Close();//写入
         }
+        //  System.Net.WebClient web = new System.Net.WebClient();
+        //  string result = web.DownloadString(url);       
     }
 
     //回复类型
@@ -124,13 +173,16 @@ namespace MessageHandle
         /// </summary>
         public static string Message_Text
         {
-            get { return @"<xml>
+            get
+            {
+                return @"<xml>
                             <ToUserName><![CDATA[{0}]]></ToUserName>
                             <FromUserName><![CDATA[{1}]]></FromUserName>
                             <CreateTime>{2}</CreateTime>
                             <MsgType><![CDATA[text]]></MsgType>
                             <Content><![CDATA[{3}]]></Content>
-                            </xml>"; }
+                            </xml>";
+            }
         }
         /// <summary>
         /// 图文消息主体
@@ -165,6 +217,34 @@ namespace MessageHandle
                             <Url><![CDATA[{3}]]></Url>
                             </item>";
             }
+        }
+
+
+        /// <summary>
+        /// 音乐
+        /// </summary>
+        public static string Message_Music
+        {
+
+            get
+            {
+
+                return @"<xml>
+    <ToUserName><![CDATA[{0}]]></ToUserName>
+    <FromUserName><![CDATA[{1}]]></FromUserName>
+    <CreateTime>{2}</CreateTime>
+    <MsgType><![CDATA[music]]></MsgType>
+    <Music>
+        <Title><![CDATA[{3}]]></Title>
+        <Description><![CDATA[{4}]]></Description>
+        <MusicUrl><![CDATA[{5}]]></MusicUrl>
+        <HQMusicUrl><![CDATA[{6}]]></HQMusicUrl>
+    </Music>
+    <FuncFlag>0</FuncFlag>
+    </xml>";
+
+            }
+
         }
     }
 }

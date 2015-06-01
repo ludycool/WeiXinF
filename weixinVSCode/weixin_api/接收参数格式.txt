@@ -1,0 +1,120 @@
+接收消息
+
+1. 文本（包括表情）
+<xml><ToUserName><![CDATA[gh_680bdefc8c5d]]></ToUserName>
+<FromUserName><![CDATA[oIDrpjqASyTPnxRmpS9O_ruZGsfk]]></FromUserName>
+<CreateTime>1359044526</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[/::)/::~/::B/::|/:8-)]]></Content>
+<MsgId>5837051792978241864</MsgId>
+</xml>
+
+ToUserName 消息接收方微信号，一般为公众平台账号微信号
+FromUserName 消息发送方微信号
+CreateTime 消息创建时间
+MsgType 消息类型；文本消息为text
+Content 消息内容
+MsgId 消息ID号
+
+2. 图片
+接收图片
+<xml><ToUserName><![CDATA[gh_680bdefc8c5d]]></ToUserName>
+<FromUserName><![CDATA[oIDrpjqASyTPnxRmpS9O_ruZGsfk]]></FromUserName>
+<CreateTime>1359028479</CreateTime>
+<MsgType><![CDATA[image]]></MsgType>
+<PicUrl><![CDATA[http://mmbiz.qpic.cn/mmbiz/L4qjYtOibummHn90t1mnaibYiaR8ljyicF3MW7XX3BLp1qZgUb7CtZ0DxqYFI4uAQH1FWs3hUicpibjF0pOqLEQyDMlg/0]]></PicUrl>
+<MsgId>5836982871638042400</MsgId>
+<MediaId><![CDATA[PGKsO3LAgbVTsFYO7FGu51KUYa07D0C_Nozz2fn1z6VYtHOsF59PTFl0vagGxkVH]]></MediaId>
+</xml>
+
+ToUserName 消息接收方微信号，一般为公众平台账号微信号
+FromUserName 消息发送方微信号
+CreateTime 消息创建时间
+MsgType 消息类型；图片消息为image
+PicUrl 图片链接地址，可以用HTTP GET获取
+MsgId 消息ID号
+
+3. 语音
+接收语音
+<xml>
+    <ToUserName><![CDATA[gh_d035bb259cf5]]></ToUserName>
+    <FromUserName><![CDATA[owEUGj4BW8yeWRvyEERiVGKwAF1Q]]></FromUserName>
+    <CreateTime>1364883809</CreateTime>
+    <MsgType><![CDATA[voice]]></MsgType>
+    <MediaId><![CDATA[JfmCezZ3Cwp0FwUvMADwwhvp-XScuvpictubpw0c6ALyA8tj3HLU4PoXzMpIY72P]]></MediaId>
+    <Format><![CDATA[amr]]></Format>
+    <MsgId>5862131322594912688</MsgId>
+</xml>
+ToUserName 消息接收方微信号，一般为公众平台账号微信号
+FromUserName 消息发送方微信号
+CreateTime 消息创建时间
+MsgType 消息类型；语音消息为voice
+MediaId 媒体ID
+Format 语音格式，这里为amr
+MsgId 消息ID号
+
+4. 视频
+接收视频
+<xml><ToUserName><![CDATA[gh_680bdefc8c5d]]></ToUserName>
+<FromUserName><![CDATA[oIDrpjqASyTPnxRmpS9O_ruZGsfk]]></FromUserName>
+<CreateTime>1359028186</CreateTime>
+<MsgType><![CDATA[video]]></MsgType>
+<MediaId><![CDATA[DBVFRIj29LB2hxuYpc0R6VLyxwgyCHZPbRj_IIs6YaGhutyXUKtFSDcSCPeoqUYr]]></MediaId>
+<ThumbMediaId><![CDATA[mxUJ5gcCeesJwx2T9qsk62YzIclCP_HnRdfTQcojlPeT2G9Q3d22UkSLyBFLZ01J]]></ThumbMediaId>
+<MsgId>5836981613212624665</MsgId>
+</xml>
+
+ToUserName 消息接收方微信号，一般为公众平台账号微信号
+FromUserName 消息发送方微信号
+CreateTime 消息创建时间
+MsgType 消息类型；视频消息为video
+MediaId 媒体ID
+ThumbMediaId 媒体缩略ID？
+MsgId 消息ID号
+
+5. 位置
+
+接收位置
+<xml>
+<ToUserName><![CDATA[gh_680bdefc8c5d]]></ToUserName>
+<FromUserName><![CDATA[oIDrpjqASyTPnxRmpS9O_ruZGsfk]]></FromUserName>
+<CreateTime>1359036619</CreateTime>
+<MsgType><![CDATA[location]]></MsgType>
+<Location_X>22.539968</Location_X>
+<Location_Y>113.954980</Location_Y>
+<Scale>16</Scale>
+<Label><![CDATA[中国广东省深圳市南山区华侨城深南大道9789号 邮政编码: 518057]]></Label>
+<MsgId>5837017832671832047</MsgId>
+</xml>
+
+ ToUserName 消息接收方微信号，一般为公众平台账号微信号
+ FromUserName 消息发送方微信号
+ CreateTime 消息创建时间
+ MsgType 消息类型，地理位置为location
+ Location_X 地理位置纬度
+ Location_Y 地理位置经度
+ Scale 地图缩放大小
+ Label 地理位置信息
+ MsgId 消息ID号
+
+ 6. 链接
+
+接收链接
+<xml>
+<ToUserName><![CDATA[gh_680bdefc8c5d]]></ToUserName> 
+<FromUserName><![CDATA[oIDrpjl2LYdfTAM-oxDgB4XZcnc8]]></FromUserName> 
+<CreateTime>1359709372</CreateTime> 
+<MsgType><![CDATA[link]]></MsgType> 
+<Title><![CDATA[微信公众平台开发者的江湖]]></Title> 
+<Description><![CDATA[陈坤的微信公众号这段时间大火，大家..]]></Description> 
+<Url><![CDATA[http://israel.duapp.com/web/photo.php]]></Url> 
+<MsgId>5839907284805129867</MsgId> 
+</xml> 
+ ToUserName 消息接收方微信号，一般为公众平台账号微信号
+ FromUserName 消息发送方微信号
+ CreateTime 消息创建时间
+ MsgType 消息类型，链接为link
+ Title 图文消息标题
+ Description 图文消息描述
+ Url 点击图文消息跳转链接
+ MsgId 消息ID号
