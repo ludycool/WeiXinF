@@ -4,6 +4,7 @@ using System.Web;
 using System.IO;
 using System.Text;
 using System.Xml;
+using MessageHandle.mode;
 
 namespace MessageHandle
 {
@@ -42,7 +43,8 @@ namespace MessageHandle
                         responseContent = EventHandle(xmldoc);
                         break;
                     case "text"://接受文本消息处理
-                        responseContent = TextHandle(xmldoc);
+                        string Content = xmldoc.SelectSingleNode("/xml/Content").InnerText;
+                        responseContent = TextHandle(Content);
                         break;
 
 
@@ -135,25 +137,41 @@ namespace MessageHandle
             return responseContent;
         }
         //接受文本消息
-        public string TextHandle(XmlDocument xmldoc)
+        public string TextHandle(string Content)
         {
-            string responseContent = "";
-            XmlNode ToUserName = xmldoc.SelectSingleNode("/xml/ToUserName");
-            XmlNode FromUserName = xmldoc.SelectSingleNode("/xml/FromUserName");
-            XmlNode Content = xmldoc.SelectSingleNode("/xml/Content");
-
-            if (Content != null)
-            {
-                responseContent = string.Format(ReplyType.Message_Text,
-                    FromUserName.InnerText,
-                    ToUserName.InnerText,
-                    DateTime.Now.Ticks,
-                    "欢迎使用微信公共账号，您输入的内容为：" + Content.InnerText + "\r\n<a href=\"http://www.baidu.com\">点击进入</a>");
-            }
-
+            string responseContent = SendText("欢迎使用微信公共账号，您输入的内容为：" + Content + "\r\n<a href=\"http://www.baidu.com\">点击进入</a>");
             return responseContent;
         }
 
+
+        //返回文本消息
+        public string SendText(string Content)
+        {
+            string responseContent = "";
+            if (Content != null)
+            {
+                responseContent = string.Format(ReplyType.Message_Text, ClientId, ServerId, DateTime.Now.Ticks, Content);
+            }
+            return responseContent;
+        }
+        //返回图文
+        public string SendMessage_News(List<NewsItem> listnews)
+        {
+            string Item = "";
+            for (int i = 0; i < listnews.Count; i++)
+            {
+
+                Item += string.Format(ReplyType.Message_News_Item, listnews[0].Title, listnews[0].Description, listnews[0].PicUrl, listnews[0].Url);
+            }
+            string responseContent = "";
+            responseContent = string.Format(ReplyType.Message_News_Main,
+                          ClientId,
+                          ServerId,
+                           DateTime.Now.Ticks,
+                          listnews.Count,
+                          Item);
+            return responseContent;
+        }
         //写入日志 
         public void WriteLog(string text)
         {
@@ -165,7 +183,7 @@ namespace MessageHandle
         //  string result = web.DownloadString(url);       
     }
 
-    //回复类型
+    //回复类型格式
     public class ReplyType
     {
         /// <summary>
