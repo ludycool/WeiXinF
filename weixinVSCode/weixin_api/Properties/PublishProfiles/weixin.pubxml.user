@@ -11,22 +11,22 @@
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/MessageHandle.dll">
-      <publishTime>05/25/2015 17:09:07</publishTime>
+      <publishTime>04/26/2016 10:34:26</publishTime>
     </File>
     <File Include="bin/weixin_api.dll">
-      <publishTime>05/25/2015 17:09:07</publishTime>
+      <publishTime>04/26/2016 10:34:27</publishTime>
     </File>
     <File Include="createMenu.aspx">
-      <publishTime>03/26/2014 13:52:49</publishTime>
+      <publishTime>04/25/2016 11:40:52</publishTime>
     </File>
     <File Include="interfaceTest.ashx">
       <publishTime>03/26/2014 13:53:46</publishTime>
     </File>
     <File Include="log.txt">
-      <publishTime>05/25/2015 16:43:57</publishTime>
+      <publishTime>04/25/2016 11:40:52</publishTime>
     </File>
     <File Include="menu.txt">
-      <publishTime>03/26/2014 16:02:51</publishTime>
+      <publishTime>04/25/2016 11:40:52</publishTime>
     </File>
     <File Include="Scripts/jquery-1.4.1-vsdoc.js">
       <publishTime>03/26/2014 13:52:09</publishTime>
@@ -38,13 +38,16 @@
       <publishTime>03/26/2014 13:52:09</publishTime>
     </File>
     <File Include="selectMenu.aspx">
-      <publishTime>03/26/2014 13:53:16</publishTime>
+      <publishTime>04/25/2016 11:40:52</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>05/25/2015 17:09:07</publishTime>
+      <publishTime>04/26/2016 10:34:27</publishTime>
     </File>
     <File Include="wxapi.ashx">
-      <publishTime>05/25/2015 11:56:35</publishTime>
+      <publishTime>04/25/2016 11:40:52</publishTime>
+    </File>
+    <File Include="接收参数格式.txt">
+      <publishTime>04/25/2016 11:40:52</publishTime>
     </File>
   </ItemGroup>
 </Project>
