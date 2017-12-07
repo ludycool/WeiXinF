@@ -9,7 +9,7 @@ Page({
       }, {
         zhName: '获取用户信息',
         enName: 'getUserInfo',
-        url: '../get-user-info/get-user-info'
+        url: '../get_userinfo/index'
       }, {
         zhName: '发起支付',
         enName: 'requestPayment',
